@@ -1,0 +1,26 @@
+html {
+  font-size: 62.5%;
+  height: 100%;
+}
+
+body {
+	color: #000;
+	font: 1.2em/1.4em verdana, arial, tahoma, sans-serif;
+}
+
+#main {
+ 	margin: 0 auto;
+	width: 960px;
+}
+
+.demo1 li {
+  display: inline;
+  float: left;
+  margin: 10px;
+}
+
+.demo1 li a {
+  width: 300px;
+  height: 200px;
+  display: block;
+}
