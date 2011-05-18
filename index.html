@@ -14,21 +14,42 @@
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" ></script>
     <script type="text/javascript" src="jquery.iconize.js" ></script>
+    <script type="text/javascript" src="jquery.livequery.js" ></script>
 
   </head>
   <body>
     <div id="main">
 
-      <ul class="demo1 clearfix">
+      <h1>Simple Demo</h1>
+      <ul id="demo1" class="demo clearfix">
         <li><a href="#"><img src="images/1.jpg" /></a></li>
         <li><a href="#"><img src="images/2.jpg" /></a></li>
         <li><a href="#"><img src="images/3.jpg" /></a></li>
-        <li><a href="#"><img src="images/4.jpg" /></a></li>
       </ul>
 
+      <h1>Try it with Live Query Plugin</h1>
+      <ul id="demo2" class="demo clearfix">
+        <li><a href="#"><img src="images/1.jpg" /></a></li>
+        <li><a href="#"><img src="images/2.jpg" /></a></li>
+      </ul>
+
+      <button id="add">Add</button>
+
       <script type="text/javascript">
-        $('.demo1 a').iconize({
+        $('#demo1 li a').iconize({
           iconSrc : 'images/video.png'
+        });
+        
+        $('#demo2 li a').livequery(function() {
+          $(this).iconize({
+            iconSrc : 'images/video.png'
+          });          
+        });
+        
+        $('#add').click(function() {
+          $('<li><a href="#"><img src="images/4.jpg" /></a></li>')
+          .appendTo('#demo2');
+            
         });
       </script>
 

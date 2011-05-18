@@ -14,13 +14,12 @@
       var img = $(this).find('img');
       var base = $(this);  
       
-      img.load(function() {
-    
+      img.imagesLoaded(function() {
+        console.log('test');
         var imageHeight = $(this).height();
         var imageWidth = $(this).width();
         
         base.css({
-          'display' : 'block',
           'position' : 'relative',
           'height' : imageHeight
         });
@@ -66,14 +65,13 @@
           }
         })
         .prependTo(base);
-
       });
 
     });
   }
-
+  
   $.fn.iconize.defaults =
-    {
+  {
     iconSrc : '/images/play.png',
     iconHeight : 32,
     iconWidth : 32,
@@ -81,4 +79,41 @@
     iconClass: 'play-icon'
   };
 
+})(jQuery);
+
+/**
+ * https://gist.github.com/268257
+ * $('img.photo',this).imagesLoaded(myFunction)
+ * execute a callback when all images have loaded.
+ * needed because .load() doesn't work on cached images
+
+ * mit license. paul irish. 2010.
+ * webkit fix from Oren Solomianik. thx!
+
+ * callback function is passed the last image to load
+ *   as an argument, and the collection as `this`
+ */
+(function($) {
+  $.fn.imagesLoaded = function(callback){
+    var elems = this.filter('img'),
+    len   = elems.length,
+    blank = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+      
+    elems.bind('load',function(){
+      if (--len <= 0 && this.src !== blank){
+        callback.call(elems,this);
+      }
+    }).each(function(){
+      // cached images don't fire load sometimes, so we reset src.
+      if (this.complete || this.complete === undefined){
+        var src = this.src;
+        // webkit hack from http://groups.google.com/group/jquery-dev/browse_thread/thread/eee6ab7b2da50e1f
+        // data uri bypasses webkit log warning (thx doug jones)
+        this.src = blank;
+        this.src = src;
+      }  
+    }); 
+
+    return this;
+  };
 })(jQuery);
