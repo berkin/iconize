@@ -24,10 +24,10 @@
           'height' : imageHeight
         });
 
-        img.css({
+        /*img.css({
           'position' : 'absolute',
           'z-index' : 1
-        });
+        });*/
         
         centerX = parseInt( (imageWidth - o.iconWidth) / 2 );
         centerY = parseInt( (imageHeight - o.iconHeight) / 2 );
