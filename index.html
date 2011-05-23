@@ -29,13 +29,12 @@
 
       <h1>Try it with Live Query Plugin</h1>
       <ul id="demo2" class="demo clearfix">
-        <li><a href="#"><img src="images/1.jpg" /></a></li>
-        <li><a href="#"><img src="images/2.jpg" /></a></li>
       </ul>
 
       <button id="add">Add</button>
 
       <script type="text/javascript">
+		var items;
         $('#demo1 li a').iconize({
           iconSrc : 'images/video.png'
         });
@@ -45,11 +44,30 @@
             iconSrc : 'images/video.png'
           });          
         });
+		$('#add').attr('disabled', '');
+		$.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
+		  {
+			tags: "girl",
+			tagmode: "any",
+			format: "json"
+		  },
+		  function(data) {
+			items = data.items;
+			$('#add').removeAttr('disabled');
+		  }
+		);
         
         $('#add').click(function() {
-          $('<li><a href="#"><img src="images/4.jpg" /></a></li>')
-          .appendTo('#demo2');
-            
+			if(($('#demo2 li').length == 3) || ($('#demo2 li').length > 3 && ($('#demo2 li').length % 4) == 3) ) {
+				$('<li style="float:none; clear:both; display: block;"/>').appendTo('#demo2');
+			}
+			var i = Math.floor(Math.random()*items.length)
+			$('<li><a href="' + items[i].link + '"><img src="' + items[i].media.m + '" /></a></li>')
+			.appendTo('#demo2');
+			items.splice(i, 1);
+			if(!items.length){
+				$('#add').remove();
+			}
         });
       </script>
 
