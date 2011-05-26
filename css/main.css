@@ -20,7 +20,6 @@ body {
 }
 
 .demo li a {
-  width: 300px;
   display: block;
 }
 
@@ -44,4 +43,12 @@ p {
 
 input {
   margin: 5px 0;
+}
+
+.col1 {
+  clear: left;
+}
+
+.col3 {
+  *float: none;
 }

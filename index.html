@@ -26,11 +26,18 @@
         <li><a href="#"><img src="images/2.jpg" /></a></li>
         <li><a href="#"><img src="images/3.jpg" /></a></li>
       </ul>
+      
+      <h2>Placing icon in different places</h2>
+      <ul id="demo2" class="demo clearfix">
+        <li><a rel="top right" href="#"><img src="images/1.jpg" /></a></li>
+        <li><a rel="top left" href="#"><img src="images/2.jpg" /></a></li>
+        <li><a rel="bottom right" href="#"><img src="images/3.jpg" /></a></li>        
+      </ul>
 
       <h2>Try it with Live Query Plugin</h2>
       <p>Click the add button to load an picture. The iconize plugin will work when the image is loaded.</p>
       
-      <ul id="demo2" class="demo clearfix">
+      <ul id="demo3" class="demo clearfix">
       </ul>
 
       <button id="add">Add</button>
@@ -41,7 +48,15 @@
           iconSrc : 'images/video.png'
         });
         
-        $('#demo2 li a').livequery(function() {
+        $('#demo2 li a').each(function() {
+          var pos = $(this).attr("rel");
+          $(this).iconize({
+            iconSrc : 'images/video.png',
+            position: pos
+          })
+        });
+        
+        $('#demo3 li a').livequery(function() {
           $(this).iconize({
             iconSrc : 'images/video.png'
           });          
@@ -61,17 +76,19 @@
         );
         
         $('#add').click(function() {
-          if(($('#demo2 li').length == 3) || ($('#demo2 li').length > 3 && ($('#demo2 li').length % 4) == 3) ) {
-            $('<li style="float:none; clear:both; display: block;"/>').appendTo('#demo2');
-          }
           
+          var col = ($('#demo3 li').length % 3) + 1;
           var i = Math.floor(Math.random()*items.length)
-          $('<li><a href="' + items[i].link + '"><img src="' + items[i].media.m + '" /></a></li>')
-          .appendTo('#demo2');
+
+          $('<li class="col' + col + '"><a href="' + items[i].link + '"><img src="' + items[i].media.m + '" /></a></li>')
+            .appendTo('#demo3');
+          
           items.splice(i, 1);
+          
           if(!items.length){
             $('#add').remove();
           }
+
         });
       </script>
 

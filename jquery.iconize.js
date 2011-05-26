@@ -28,36 +28,40 @@
         
         posX = centerX;
         posY = centerY;
-        switch(o.position) {
-          case 'top right':
-            posX = 10;
-            posY = 10;
-            break;
-          case 'top center':
-            posX = 10;
-            break;
+        
+        if ( o.position.match(/top/) ) {
+          posY = 10;
+        } else if( o.position.match(/bottom/) ) {
+          posY = imageHeight - (10 + o.iconHeight);
+        }
+        
+        if ( o.position.match(/left/) ) {
+          posX = 10;
+        } else if ( o.position.match(/right/) ) {
+          posX = imageWidth - (10 + o.iconWidth);
         }
         
         $('<span/>')
-        .css({
-          'position' : 'absolute',
-          'z-index' : 2,
-          'left' : posX,
-          'top' : posY,
-          'background' : 'url(' + o.iconSrc + ') no-repeat 0 0',
-          'height' : o.iconHeight + 'px',
-          'width' : o.iconWidth + 'px'
-        })
-        .each(function() {
-          if ( $.browser.msie && $.browser.version == 6 ) {
-            $(this).css({
-              'background' : 'transparent',
-              'filter' : 'progid:DXImageTransform.Microsoft.AlphaImageLoader' + '(src=\'' + o.iconSrc + '\', sizingMethod=\'scale\')'
-                
-            });
-          }
-        })
-        .prependTo(base);
+          .css({
+            'position' : 'absolute',
+            'z-index' : 2,
+            'left' : posX,
+            'top' : posY,
+            'background' : 'url(' + o.iconSrc + ') no-repeat 0 0',
+            'height' : o.iconHeight + 'px',
+            'width' : o.iconWidth + 'px'
+          })
+          .each(function() {
+            if ( $.browser.msie && $.browser.version == 6 ) {
+              $(this).css({
+                'background' : 'transparent',
+                'filter' : 'progid:DXImageTransform.Microsoft.AlphaImageLoader' + '(src=\'' + o.iconSrc + '\', sizingMethod=\'scale\')'
+
+              });
+            }
+          })
+          .prependTo(base);
+          
       });
 
     });
