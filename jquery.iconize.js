@@ -22,15 +22,12 @@
           'position' : 'relative',
           'height' : imageHeight
         });
-
-        /*img.css({
-          'position' : 'absolute',
-          'z-index' : 1
-        });*/
         
         centerX = parseInt( (imageWidth - o.iconWidth) / 2 );
         centerY = parseInt( (imageHeight - o.iconHeight) / 2 );
         
+        posX = centerX;
+        posY = centerY;
         switch(o.position) {
           case 'top right':
             posX = 10;
@@ -38,10 +35,7 @@
             break;
           case 'top center':
             posX = 10;
-            posY = centerY;
-          default:
-            posX = centerX;
-            posY = centerY;
+            break;
         }
         
         $('<span/>')
