@@ -14,27 +14,29 @@
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" ></script>
     <script type="text/javascript" src="jquery.iconize.js" ></script>
-    <script type="text/javascript" src="jquery.livequery.js" ></script>
+    <script type="text/javascript" src="libs/jquery.livequery.js" ></script>
 
   </head>
   <body>
     <div id="main">
-
-      <h1>Simple Demo</h1>
+      <h1>jQuery Iconize Plugin - Demos
+      <h2>Simple Demo</h2>
       <ul id="demo1" class="demo clearfix">
         <li><a href="#"><img src="images/1.jpg" /></a></li>
         <li><a href="#"><img src="images/2.jpg" /></a></li>
         <li><a href="#"><img src="images/3.jpg" /></a></li>
       </ul>
 
-      <h1>Try it with Live Query Plugin</h1>
+      <h2>Try it with Live Query Plugin</h2>
+      <p>Click the add button to load an picture. The iconize plugin will work when the image is loaded.</p>
+      
       <ul id="demo2" class="demo clearfix">
       </ul>
 
       <button id="add">Add</button>
 
       <script type="text/javascript">
-		var items;
+        var items;
         $('#demo1 li a').iconize({
           iconSrc : 'images/video.png'
         });
@@ -44,30 +46,32 @@
             iconSrc : 'images/video.png'
           });          
         });
-		$('#add').attr('disabled', '');
-		$.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
-		  {
-			tags: "girl",
-			tagmode: "any",
-			format: "json"
-		  },
-		  function(data) {
-			items = data.items;
-			$('#add').removeAttr('disabled');
-		  }
-		);
+        
+        $('#add').attr('disabled', '');
+        $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
+          {
+            tags: "music",
+            tagmode: "any",
+            format: "json"
+          },
+          function(data) {
+            items = data.items;
+            $('#add').removeAttr('disabled');
+          }
+        );
         
         $('#add').click(function() {
-			if(($('#demo2 li').length == 3) || ($('#demo2 li').length > 3 && ($('#demo2 li').length % 4) == 3) ) {
-				$('<li style="float:none; clear:both; display: block;"/>').appendTo('#demo2');
-			}
-			var i = Math.floor(Math.random()*items.length)
-			$('<li><a href="' + items[i].link + '"><img src="' + items[i].media.m + '" /></a></li>')
-			.appendTo('#demo2');
-			items.splice(i, 1);
-			if(!items.length){
-				$('#add').remove();
-			}
+          if(($('#demo2 li').length == 3) || ($('#demo2 li').length > 3 && ($('#demo2 li').length % 4) == 3) ) {
+            $('<li style="float:none; clear:both; display: block;"/>').appendTo('#demo2');
+          }
+          
+          var i = Math.floor(Math.random()*items.length)
+          $('<li><a href="' + items[i].link + '"><img src="' + items[i].media.m + '" /></a></li>')
+          .appendTo('#demo2');
+          items.splice(i, 1);
+          if(!items.length){
+            $('#add').remove();
+          }
         });
       </script>
 

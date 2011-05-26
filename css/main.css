@@ -28,4 +28,20 @@ h1 {
   font-size: 1.5em;
   font-weight: bold;
   line-height: 2;
+  margin: 10px 0 15px;
+}
+
+h2 {
+  font-size: 1.333em;
+  font-weight: bold;
+  line-height: 2;  
+  margin: 0 0 5px;
+}
+
+p {
+  margin: 0 0 10px;
+}
+
+input {
+  margin: 5px 0;
 }

@@ -15,7 +15,6 @@
       var base = $(this);  
       
       img.imagesLoaded(function() {
-        console.log('test');
         var imageHeight = $(this).height();
         var imageWidth = $(this).width();
         
