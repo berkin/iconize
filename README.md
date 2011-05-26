@@ -15,10 +15,10 @@ Chrome
 Safari
 
 ## Usage
-	// Simple Usage
-        $('.video-link').iconize({
-	          iconSrc : 'images/video.png
-	});
+// Simple Usage
+$('.video-link').iconize({
+	iconSrc : 'images/video.png
+});
 
 ## License
 MIT License. See LICENSE for more information.
