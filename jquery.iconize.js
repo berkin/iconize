@@ -1,7 +1,11 @@
 /**
- * jQuery Iconize
- * 
+ * jQuery Iconize Plugin
  *
+ * Copyright (c) 2010 - 2011 Berkin Berkcan Çırak
+ *
+ * Dual licensed under the MIT and GPL licenses:
+ *   http://www.opensource.org/licenses/mit-license.php
+ *   http://www.gnu.org/licenses/gpl.html
  */
 
 
@@ -41,25 +45,27 @@
           posX = imageWidth - (10 + o.iconWidth);
         }
         
-        $('<span/>')
-          .css({
-            'position' : 'absolute',
-            'z-index' : 2,
-            'left' : posX,
-            'top' : posY,
-            'background' : 'url(' + o.iconSrc + ') no-repeat 0 0',
-            'height' : o.iconHeight + 'px',
-            'width' : o.iconWidth + 'px'
-          })
-          .each(function() {
-            if ( $.browser.msie && $.browser.version == 6 ) {
-              $(this).css({
-                'background' : 'transparent',
-                'filter' : 'progid:DXImageTransform.Microsoft.AlphaImageLoader' + '(src=\'' + o.iconSrc + '\', sizingMethod=\'scale\')'
-
-              });
-            }
-          })
+        $('<div/>').css({
+              'position' : 'absolute',
+              'z-index' : 2,
+              'left' : posX,
+              'top' : posY
+            })
+        .append(
+          $('<div/>')
+            .css({
+              'background' : 'url(' + o.iconSrc + ') no-repeat 0 0',
+              'height' : o.iconHeight + 'px',
+              'width' : o.iconWidth + 'px'
+            })
+            .each(function() {
+              if ( $.browser.msie && $.browser.version == 6 ) {
+                $(this).css({
+                  'background' : 'transparent',
+                  'filter' : 'progid:DXImageTransform.Microsoft.AlphaImageLoader' + '(src=\'' + o.iconSrc + '\', sizingMethod=\'scale\')'
+                });
+              }
+            }))
           .prependTo(base);
           
       });
