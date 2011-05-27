@@ -6,10 +6,11 @@
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
  *   http://www.gnu.org/licenses/gpl.html
+ *   
  */
 
 
-(function( $ ) {
+(function($) {
   $.fn.iconize = function(options)
   {
     return this.each(function()
@@ -23,8 +24,10 @@
         var imageWidth = $(this).width();
         
         base.css({
-          'position' : 'relative',
-          'height' : imageHeight
+          display : 'block',
+          position : 'relative',
+          height : imageHeight,
+          width : imageWidth
         });
         
         centerX = parseInt( (imageWidth - o.iconWidth) / 2 );
@@ -35,7 +38,7 @@
         
         if ( o.position.match(/top/) ) {
           posY = 10;
-        } else if( o.position.match(/bottom/) ) {
+        } else if ( o.position.match(/bottom/) ) {
           posY = imageHeight - (10 + o.iconHeight);
         }
         
@@ -45,30 +48,31 @@
           posX = imageWidth - (10 + o.iconWidth);
         }
         
-        $('<div/>').css({
-              'position' : 'absolute',
-              'z-index' : 2,
-              'left' : posX,
-              'top' : posY
-            })
-        .append(
-          $('<div/>')
-            .css({
-              'background' : 'url(' + o.iconSrc + ') no-repeat 0 0',
-              'height' : o.iconHeight + 'px',
-              'width' : o.iconWidth + 'px'
-            })
-            .each(function() {
-              if ( $.browser.msie && $.browser.version == 6 ) {
-                $(this).css({
-                  'background' : 'transparent',
-                  'filter' : 'progid:DXImageTransform.Microsoft.AlphaImageLoader' + '(src=\'' + o.iconSrc + '\', sizingMethod=\'scale\')'
-                });
-              }
-            }))
-          .prependTo(base);
-          
-      });
+        $('<div/>')
+          .css({
+                position : 'absolute',
+                zIndex : 2,
+                left : posX,
+                top : posY
+              })
+          .append(
+            $('<div/>')
+              .css({
+                background : 'url(' + o.iconSrc + ') no-repeat 0 0',
+                height : o.iconHeight + 'px',
+                width : o.iconWidth + 'px'
+              })
+              .each(function() {
+                if ( $.browser.msie && $.browser.version == 6 ) {
+                  $(this).css({
+                    background : 'transparent',
+                    filter : 'progid:DXImageTransform.Microsoft.AlphaImageLoader' + '(src=\'' + o.iconSrc + '\', sizingMethod=\'scale\')'
+                  });
+                }
+              }))
+            .prependTo(base);
+
+        });
 
     });
   }
@@ -79,7 +83,7 @@
     iconHeight : 32,
     iconWidth : 32,
     position: 'center',
-    iconClass: 'play-icon'
+    margin: '10px 10px'
   };
 
 })(jQuery);
