@@ -47,14 +47,17 @@
         } else if ( o.position.match(/right/) ) {
           posX = imageWidth - (10 + o.iconWidth);
         }
-        
+
         $('<div/>')
           .css({
                 position : 'absolute',
                 zIndex : 2,
                 left : posX,
-                top : posY
+                top : posY,
+                opacity: o.opacity/100,
+                filter : 'alpha(opacity=' + o.opacity + ')'
               })
+          .attr('class', 'iconize-overlay')
           .append(
             $('<div/>')
               .css({
@@ -63,7 +66,7 @@
                 width : o.iconWidth + 'px'
               })
               .each(function() {
-                if ( $.browser.msie && $.browser.version == 6 ) {
+                if ( $.browser.msie && $.browser.version <= 8 ) {
                   $(this).css({
                     background : 'transparent',
                     filter : 'progid:DXImageTransform.Microsoft.AlphaImageLoader' + '(src=\'' + o.iconSrc + '\', sizingMethod=\'scale\')'
@@ -72,6 +75,16 @@
               }))
             .prependTo(base);
 
+        });
+        
+        base.bind('mouseenter mouseleave', function(e) {
+          var overlay = base.find('.iconize-overlay');
+          
+          if ( e.type == 'mouseenter' ) {
+            overlay.fadeTo('fast', 1);
+          } else {
+            overlay.fadeTo('fast', (o.opacity/100))
+          }
         });
 
     });
@@ -83,7 +96,8 @@
     iconHeight : 32,
     iconWidth : 32,
     position: 'center',
-    margin: '10px 10px'
+    margin: '10px 10px',
+    opacity: 40
   };
 
 })(jQuery);
