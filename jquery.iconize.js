@@ -19,6 +19,7 @@
       var base = o.container = $(this);  
       o.img = $(this).find('img');
       
+      // prepare icon container
       o.icon = $('<div/>')
       .css({
         position : 'absolute',
@@ -43,6 +44,7 @@
           }
         }));
       
+      // check if the image is loaded
       o.img.imagesLoaded(function() {
         var imageHeight = $(this).height();
         var imageWidth = $(this).width();
@@ -61,15 +63,15 @@
         posY = centerY;
         
         if ( o.position.match(/top/) ) {
-          posY = 10;
+          posY = o.offsetY;
         } else if ( o.position.match(/bottom/) ) {
-          posY = imageHeight - (10 + o.iconHeight);
+          posY = imageHeight - (o.offsetY + o.iconHeight);
         }
         
         if ( o.position.match(/left/) ) {
-          posX = 10;
+          posX = o.offsetX;
         } else if ( o.position.match(/right/) ) {
-          posX = imageWidth - (10 + o.iconWidth);
+          posX = imageWidth - (o.offsetX + o.iconWidth);
         }
         
         o.icon.css({ 
@@ -77,6 +79,7 @@
           top : posY
         })
         .prependTo(base);
+        
       });
         
       if (o.initCallback !== null) {
@@ -94,7 +97,8 @@
     iconHeight : 32,
     iconWidth : 32,
     position: 'center',
-    offset: '10 10',
+    offsetX: 10,
+    offsetY: 10,
     opacity: 1,
     initCallback: null
   };
