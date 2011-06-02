@@ -101,19 +101,20 @@
         
           $('#demo4 li a').iconize({
             iconSrc : 'images/video.png',
-            opacity: 0.4,
+            opacity: 0.6,
             initCallback: function() {
               this.container.css({
                 background: '#000'
               })
               var img = this.img;
               var icon = this.icon;
+              var opacity = this.opacity;
               this.container.bind('mouseenter mouseleave', function(e) {
                 if ( e.type == 'mouseenter' ) {
                   icon.fadeTo('slow', 1);
-                  img.fadeTo('slow', 0.4);
+                  img.fadeTo('slow', opacity);
                 } else {
-                  icon.fadeTo('slow', 0.4);
+                  icon.fadeTo('slow', opacity);
                   img.fadeTo('slow', 1);
                 }
               });

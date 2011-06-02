@@ -80,7 +80,7 @@
       });
         
       if (o.initCallback !== null) {
-        o.initCallback(this, 'init');
+        o.initCallback(this);
       }
         
 
