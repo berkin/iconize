@@ -23,15 +23,19 @@ body {
   display: block;
 }
 
+.container {
+  margin: 0 0 20px;
+}
+
 h1 {
-  font-size: 1.5em;
+  font-size: 1.333em;
   font-weight: bold;
   line-height: 2;
   margin: 10px 0 15px;
 }
 
 h2 {
-  font-size: 1.333em;
+  font-size: 1.133em;
   font-weight: bold;
   line-height: 2;  
   margin: 0 0 5px;

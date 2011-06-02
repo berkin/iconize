@@ -20,40 +20,52 @@
   <body>
     <div id="main">
       <h1>jQuery Iconize Plugin - Demos
-        
-        <h2>Simple Demo</h2>
-        <ul id="demo1" class="demo clearfix">
-          <li><a href="#"><img src="images/1.jpg" /></a></li>
-          <li><a href="#"><img src="images/2.jpg" /></a></li>
-          <li><a href="#"><img src="images/3.jpg" /></a></li>
-        </ul>
 
-        <h2>Placing icon in different places</h2>
-        <ul id="demo2" class="demo clearfix">
-          <li><a rel="top right" href="#"><img src="images/1.jpg" /></a></li>
-          <li><a rel="top left" href="#"><img src="images/2.jpg" /></a></li>
-          <li><a rel="bottom right" href="#"><img src="images/3.jpg" /></a></li>        
-        </ul>
+        <div class="container">
+          <h2>Simple Demo</h2>
+          <ul id="demo1" class="demo clearfix">
+            <li><a class="video" href="#"><img src="images/1.jpg" /></a></li>
+            <li><a class="gallery" href="#"><img src="images/2.jpg" /></a></li>
+            <li><a class="video" href="#"><img src="images/3.jpg" /></a></li>
+          </ul>
+        </div>
 
-        <h2>Try it with Live Query Plugin</h2>
-        <p>Click the add button to load an picture. The iconize plugin will work when the image is loaded.</p>
+        <div class="container">
+          <h2>Placing icon in different places</h2>
+          <ul id="demo2" class="demo clearfix">
+            <li><a rel="top right" href="#"><img src="images/1.jpg" /></a></li>
+            <li><a rel="top left" href="#"><img src="images/2.jpg" /></a></li>
+            <li><a rel="bottom right" href="#"><img src="images/3.jpg" /></a></li>        
+          </ul>
+        </div>
 
-        <ul id="demo3" class="demo clearfix">
-        </ul>
+        <div class="container">
+          <h2>Try it with Live Query Plugin</h2>
+          <p>Click the add button to load an picture. The iconize plugin will work when the image is loaded.</p>
 
-        <button id="add">Add</button>
+          <ul id="demo3" class="demo clearfix">
+          </ul>
 
-        <h2>Using callback for effects</h2>
-        <ul id="demo4" class="demo clearfix">
-          <li><a href="#"><img src="images/1.jpg" /></a></li>
-          <li><a href="#"><img src="images/2.jpg" /></a></li>
-          <li><a href="#"><img src="images/3.jpg" /></a></li>        
-        </ul>
+          <button id="add">Add</button>
+        </div>
+
+        <div class="container">
+          <h2>Using callback for effects</h2>
+          <ul id="demo4" class="demo clearfix">
+            <li><a href="#"><img src="images/1.jpg" /></a></li>
+            <li><a href="#"><img src="images/2.jpg" /></a></li>
+            <li><a href="#"><img src="images/3.jpg" /></a></li>        
+          </ul>
+        </div>
 
         <script type="text/javascript">
           var items;
-          $('#demo1 li a').iconize({
+          $('.video').iconize({
             iconSrc : 'images/video.png'
+          });
+          
+          $('.gallery').iconize({
+            iconSrc : 'images/gallery.png'
           });
         
           $('#demo2 li a').each(function() {
@@ -71,8 +83,7 @@
           });
         
           $('#add').attr('disabled', '');
-          $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
-          {
+          $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?", {
             tags: "music",
             tagmode: "any",
             format: "json"
