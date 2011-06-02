@@ -20,6 +20,7 @@ Chrome
 
 Safari
 
+Opera
 
 ## Usage
 	// Simple Usage
