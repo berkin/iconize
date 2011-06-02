@@ -16,10 +16,34 @@
     return this.each(function()
     {
       var o = $.extend({}, $.fn.iconize.defaults, options);
-      var img = $(this).find('img');
-      var base = $(this);  
+      var base = o.container = $(this);  
+      o.img = $(this).find('img');
       
-      img.imagesLoaded(function() {
+      o.icon = $('<div/>')
+      .css({
+        position : 'absolute',
+        zIndex : 2,
+        opacity: o.opacity,
+        filter : 'alpha(opacity=' + o.opacity * 100 + ')'
+      })
+      .attr('class', 'iconize-overlay')
+      .append(
+        $('<div/>')
+        .css({
+          background : 'url(' + o.iconSrc + ') no-repeat 0 0',
+          height : o.iconHeight + 'px',
+          width : o.iconWidth + 'px'
+        })
+        .each(function() {
+          if ( $.browser.msie && $.browser.version <= 8 ) {
+            $(this).css({
+              background : 'transparent',
+              filter : 'progid:DXImageTransform.Microsoft.AlphaImageLoader' + '(src=\'' + o.iconSrc + '\', sizingMethod=\'scale\')'
+            });
+          }
+        }));
+      
+      o.img.imagesLoaded(function() {
         var imageHeight = $(this).height();
         var imageWidth = $(this).width();
         
@@ -47,45 +71,19 @@
         } else if ( o.position.match(/right/) ) {
           posX = imageWidth - (10 + o.iconWidth);
         }
-
-        $('<div/>')
-          .css({
-                position : 'absolute',
-                zIndex : 2,
-                left : posX,
-                top : posY,
-                opacity: o.opacity/100,
-                filter : 'alpha(opacity=' + o.opacity + ')'
-              })
-          .attr('class', 'iconize-overlay')
-          .append(
-            $('<div/>')
-              .css({
-                background : 'url(' + o.iconSrc + ') no-repeat 0 0',
-                height : o.iconHeight + 'px',
-                width : o.iconWidth + 'px'
-              })
-              .each(function() {
-                if ( $.browser.msie && $.browser.version <= 8 ) {
-                  $(this).css({
-                    background : 'transparent',
-                    filter : 'progid:DXImageTransform.Microsoft.AlphaImageLoader' + '(src=\'' + o.iconSrc + '\', sizingMethod=\'scale\')'
-                  });
-                }
-              }))
-            .prependTo(base);
-
-        });
         
-        base.bind('mouseenter mouseleave', function(e) {
-          var overlay = base.find('.iconize-overlay');
-          
-          if ( e.type == 'mouseenter' ) {
-            overlay.fadeTo('fast', 1);
-          } else {
-            overlay.fadeTo('fast', (o.opacity/100))
-          }
-        });
+        o.icon.css({ 
+          left : posX,
+          top : posY
+        })
+        .prependTo(base);
+      });
+        
+      if (o.initCallback !== null) {
+        o.initCallback(this, 'init');
+      }
+        
+
 
     });
   }
@@ -96,8 +94,9 @@
     iconHeight : 32,
     iconWidth : 32,
     position: 'center',
-    margin: '10px 10px',
-    opacity: 40
+    offset: '10 10',
+    opacity: 1,
+    initCallback: null
   };
 
 })(jQuery);
