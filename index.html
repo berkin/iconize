@@ -1,1 +1,139 @@
-My Github Page
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>jQuery Iconize Demo</title>
+    <meta name="description" content="" />
+    <meta name="abstract" content="" />
+    <meta name="keywords" content="" />
+    <meta name="robots" content="all" />
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" ></script>
+    <script type="text/javascript" src="jquery.iconize.js" ></script>
+    <script type="text/javascript" src="libs/jquery.livequery.js" ></script>
+
+  </head>
+  <body>
+    <div id="main">
+      <h1>jQuery Iconize Plugin - Demos</h1>
+
+        <div class="container">
+          <h2>Simple Demo</h2>
+          <ul id="demo1" class="demo clearfix">
+            <li><a class="video" href="#"><img src="images/1.jpg" /></a></li>
+            <li><a class="gallery" href="#"><img src="images/2.jpg" /></a></li>
+            <li><a class="video" href="#"><img src="images/3.jpg" /></a></li>
+          </ul>
+        </div>
+
+        <div class="container">
+          <h2>Placing icon in different places</h2>
+          <ul id="demo2" class="demo clearfix">
+            <li><a rel="top right" href="#"><img src="images/1.jpg" /></a></li>
+            <li><a rel="top left" href="#"><img src="images/2.jpg" /></a></li>
+            <li><a rel="bottom right" href="#"><img src="images/3.jpg" /></a></li>        
+          </ul>
+        </div>
+
+        <div class="container">
+          <h2>Try it with Live Query Plugin</h2>
+          <p>Click the add button to load an picture. The iconize plugin will work when the image is loaded.</p>
+
+          <ul id="demo3" class="demo clearfix">
+          </ul>
+
+          <button id="add">Add</button>
+        </div>
+
+        <div class="container">
+          <h2>Using callback for effects</h2>
+          <ul id="demo4" class="demo clearfix">
+            <li><a href="#"><img src="images/1.jpg" /></a></li>
+            <li><a href="#"><img src="images/2.jpg" /></a></li>
+            <li><a href="#"><img src="images/3.jpg" /></a></li>        
+          </ul>
+        </div>
+
+        <script type="text/javascript">
+          var items;
+          $('.video').iconize({
+            iconSrc : 'images/video.png'
+          });
+          
+          $('.gallery').iconize({
+            iconSrc : 'images/gallery.png'
+          });
+        
+          $('#demo2 li a').each(function() {
+            var pos = $(this).attr("rel");
+            $(this).iconize({
+              iconSrc : 'images/video.png',
+              position: pos
+            })
+          });
+        
+          $('#demo3 li a').livequery(function() {
+            $(this).iconize({
+              iconSrc : 'images/video.png'
+            });          
+          });
+        
+          $('#add').attr('disabled', '');
+          $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?", {
+            tags: "music",
+            tagmode: "any",
+            format: "json"
+          },
+          function(data) {
+            items = data.items;
+            $('#add').removeAttr('disabled');
+          }
+        );
+        
+          $('#add').click(function() {
+          
+            var col = ($('#demo3 li').length % 3) + 1;
+            var i = Math.floor(Math.random()*items.length)
+
+            $('<li class="col' + col + '"><a href="' + items[i].link + '"><img src="' + items[i].media.m + '" /></a></li>')
+            .appendTo('#demo3');
+          
+            items.splice(i, 1);
+          
+            if(!items.length){
+              $('#add').remove();
+            }
+
+          });
+        
+          $('#demo4 li a').iconize({
+            iconSrc : 'images/video.png',
+            opacity: 0.6,
+            initCallback: function() {
+              this.container.css({
+                background: '#000'
+              })
+              var img = this.img;
+              var icon = this.icon;
+              var opacity = this.opacity;
+              this.container.bind('mouseenter mouseleave', function(e) {
+                if ( e.type == 'mouseenter' ) {
+                  icon.fadeTo('slow', 1);
+                  img.fadeTo('slow', opacity);
+                } else {
+                  icon.fadeTo('slow', opacity);
+                  img.fadeTo('slow', 1);
+                }
+              });
+            }
+          })
+        </script>
+
+    </div>
+  </body>
+</html>
+

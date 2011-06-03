@@ -1,0 +1,58 @@
+html {
+  font-size: 62.5%;
+  height: 100%;
+}
+
+body {
+	color: #000;
+	font: 1.2em/1.4em verdana, arial, tahoma, sans-serif;
+}
+
+#main {
+ 	margin: 0 auto;
+	width: 960px;
+}
+
+.demo li {
+  display: inline;
+  float: left;
+  margin: 0 20px 20px  0;
+}
+
+.demo li a {
+  display: block;
+}
+
+.container {
+  margin: 0 0 20px;
+}
+
+h1 {
+  font-size: 1.333em;
+  font-weight: bold;
+  line-height: 2;
+  margin: 10px 0 15px;
+}
+
+h2 {
+  font-size: 1.133em;
+  font-weight: bold;
+  line-height: 2;  
+  margin: 0 0 5px;
+}
+
+p {
+  margin: 0 0 10px;
+}
+
+input {
+  margin: 5px 0;
+}
+
+.col1 {
+  clear: left;
+}
+
+.col3 {
+  *float: none;
+}
