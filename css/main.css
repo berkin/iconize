@@ -10,7 +10,7 @@ body {
 
 #main {
  	margin: 0 auto;
-	width: 760px;
+	width: 723px;
 	padding: 0 0 40px;
 }
 
@@ -18,6 +18,9 @@ body {
   display: inline;
   float: left;
   margin: 0 20px 20px  0;
+}
+.demo .last {
+  margin-right: 0;
 }
 
 .demo li a {
@@ -68,3 +71,14 @@ input {
 	font-size: 1.333em;
   margin: 10px 0 0;
 }
+
+pre {
+  border: 1px dashed #333;
+  background: #f3f3f3;
+}
+
+ol {
+  list-style-type: decimal;
+  padding: 0 0 0 40px;
+}
+

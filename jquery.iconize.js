@@ -10,7 +10,7 @@
  */
 
 
-(function($) {
+;(function($) {
   $.fn.iconize = function(options)
   {
     return this.each(function()
