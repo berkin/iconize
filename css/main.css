@@ -11,6 +11,7 @@ body {
 #main {
  	margin: 0 auto;
 	width: 960px;
+	padding: 0 0 40px;
 }
 
 .demo li {
@@ -55,4 +56,13 @@ input {
 
 .col3 {
   *float: none;
+}
+
+.syntaxhighlighter {
+	padding: 10px 0;
+}
+
+.main-header {
+	color: #f35;
+	font-size: 1.333em;
 }
