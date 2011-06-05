@@ -5,12 +5,12 @@ html {
 
 body {
 	color: #000;
-	font: 1.2em/1.4em verdana, arial, tahoma, sans-serif;
+	font: 1.2em/1.5em verdana, arial, tahoma, sans-serif;
 }
 
 #main {
  	margin: 0 auto;
-	width: 960px;
+	width: 760px;
 	padding: 0 0 40px;
 }
 
@@ -59,10 +59,12 @@ input {
 }
 
 .syntaxhighlighter {
+  width: 720px !important;
 	padding: 10px 0;
 }
 
 .main-header {
 	color: #f35;
 	font-size: 1.333em;
+  margin: 10px 0 0;
 }

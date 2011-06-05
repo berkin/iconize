@@ -11,30 +11,49 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/reset.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
-    
+
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" ></script>
     <script type="text/javascript" src="jquery.iconize.js" ></script>
     <script type="text/javascript" src="libs/jquery.livequery.js" ></script>
-	
-	<link href="http://alexgorbatchev.com/pub/sh/current/styles/shCore.css" rel="stylesheet" type="text/css" />
-	<link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDjango.css" rel="stylesheet" type="text/css" />
-	<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js" type="text/javascript"></script>
-	<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js"></script
+
+    <link href="http://alexgorbatchev.com/pub/sh/current/styles/shCore.css" rel="stylesheet" type="text/css" />
+    <link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDjango.css" rel="stylesheet" type="text/css" />
+    <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js" type="text/javascript"></script>
+    <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js"></script>
   </head>
   <body>
     <div id="main">
       <h1>jQuery Iconize Plugin</h1>
-	  <p>It is a little but helpful plugin that adds an image over an image.</p>
-	  
-	  <h2 class="main-header">Usage</h2>
+      <p>It is a little but useful plugin that adds an image over an image. Click <a href="berkin.github.com/iconize">here</a> to check my github page.</p>
 
-	  <h2 class="main-header">Demos</h2>
+      <h2 class="main-header">Requirements</h2>
+
+      jQuery >= 1.4.1
+
+      jQuery Live Query plugin(optional), to use it after the page has been loaded and the DOM updated.
+
+      For more information <a href="http://brandonaaron.net/code/livequery/docs">jQuery Live Query Plugin</a>
+      
+      <h2 class="main-header">Compability</h2>
+
+        ie6+ (supports transparent pngs and opacity also. You could animate opacity),
+
+        Firefox,
+
+        Chrome,
+
+        Safari,
+
+        Opera
+        
+        
+      <h2 class="main-header">Demos</h2>
       <div class="container">
         <h2>Simple Demo</h2>
         <ul id="demo1" class="demo clearfix">
-          <li><a class="video" href="#"><img src="images/1.jpg" /></a></li>
-          <li><a class="gallery" href="#"><img src="images/2.jpg" /></a></li>
-          <li><a class="video" href="#"><img src="images/3.jpg" /></a></li>
+          <li><a href="#"><img src="images/1.jpg" /></a>Plugin is not applied</li>
+          <li><a class="gallery" href="#"><img src="images/2.jpg" /></a>Gallery icon is applied</li>
+          <li><a class="video" href="#"><img src="images/3.jpg" /></a>Video icon is applied</li>
         </ul>
         <pre class="brush: js; gutter: true; toolbar: false; ">
 				
@@ -56,7 +75,7 @@
           <li><a rel="top left" href="#"><img src="images/2.jpg" /></a></li>
           <li><a rel="bottom right" href="#"><img src="images/3.jpg" /></a></li>        
         </ul>
-		
+
         <pre class="brush: js; gutter: true; toolbar: false;">
 				
 			$('#demo2 li a').each(function() {
@@ -78,7 +97,7 @@
         </ul>
 
         <button id="add">Add</button>
-		
+
         <pre class="brush: js; gutter: true; toolbar: false; ">
 				
         var items;
@@ -100,7 +119,7 @@
           var col = ($('#demo3 li').length % 3) + 1;
           var i = Math.floor(Math.random()*items.length)
 
-          $('<li class="col' + col + '"><a href="' + items[i].link + '"><img src="' + items[i].media.m + '" /></a></li>')
+          $('&lt;li class="col' + col + '"&gt;&lt;a href="' + items[i].link + '"&gt;&lt;img src="' + items[i].media.m + '" /&gt;&lt;/a&gt;&lt;/li&gt;')
           .appendTo('#demo3');
           
           items.splice(i, 1);
@@ -203,7 +222,7 @@
         
         $('#demo4 li a').iconize({
           iconSrc : 'images/video.png',
-          opacity: 0.6,
+          opacity: 0.4,
           initCallback: function() {
             this.container.css({
               background: '#000'
@@ -227,7 +246,7 @@
       </script>
 
     </div>
-	<a href="http://github.com/berkin"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/bec6c51521dcc8148146135149fe06a9cc737577/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub"></a>
+    <a href="http://github.com/berkin"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/bec6c51521dcc8148146135149fe06a9cc737577/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub"></a>
   </body>
 </html>
 
