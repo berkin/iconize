@@ -14,7 +14,6 @@
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" ></script>
     <script type="text/javascript" src="jquery.iconize.js" ></script>
-    <script type="text/javascript" src="libs/jquery.livequery.js" ></script>
 
   </head>
   <body>
@@ -40,7 +39,7 @@
         </div>
 
         <div class="container">
-          <h2>Try it with Live Query Plugin</h2>
+          <h2>Try it with ajax load</h2>
           <p>Click the add button to load an picture. The iconize plugin will work when the image is loaded.</p>
 
           <ul id="demo3" class="demo clearfix">
@@ -76,37 +75,33 @@
             })
           });
         
-          $('#demo3 li a').livequery(function() {
-            $(this).iconize({
-              iconSrc : 'images/video.png'
-            });          
-          });
-        
-          $('#add').attr('disabled', '');
-          $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?", {
+         
+          $('#add').click(function() {
+           $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?", {
             tags: "music",
             tagmode: "any",
-            format: "json"
+            format: "json",
           },
           function(data) {
             items = data.items;
-            $('#add').removeAttr('disabled');
-          }
-        );
-        
-          $('#add').click(function() {
           
             var col = ($('#demo3 li').length % 3) + 1;
             var i = Math.floor(Math.random()*items.length)
 
             $('<li class="col' + col + '"><a href="' + items[i].link + '"><img src="' + items[i].media.m + '" /></a></li>')
-            .appendTo('#demo3');
+            .appendTo('#demo3').iconize({
+              iconSrc : 'images/video.png' 
+            });
           
             items.splice(i, 1);
           
             if(!items.length){
               $('#add').remove();
-            }
+            }            
+          }
+        );
+        
+           
 
           });
         
