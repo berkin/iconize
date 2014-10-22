@@ -24,7 +24,7 @@ Opera
 	});
 
 ## TODO
-	requirejs support test, bower support, more example.
+	requirejs support test, bower support, more example, javascript doc.
 
 ## License
 Dual licensed under the MIT and GPL licenses:
