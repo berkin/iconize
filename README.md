@@ -25,6 +25,8 @@ Opera
 
 ## TODO
 	requirejs support test, bower support, more example, javascript doc.
+	write tests. make folders(tests, examples, docs, src)
+	add examples to codepen.io
 
 ## License
 Dual licensed under the MIT and GPL licenses:
